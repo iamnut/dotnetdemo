@@ -84,15 +84,19 @@ services:
 
   dotnetdemo-vscode:
     container_name: dotnetdemo-vscode
-    image: codercom/code-server:v2
+    build:
+      context: ./.docker/vscode
+      dockerfile: Dockerfile
+    image: vscode:latest
     logging: *default-logging
     restart: always
-    working_dir: /app
+    command: /home/coder/project
     environment:
       - TZ=Asia/Bangkok
       - PASSWORD=1234
     volumes:
-      - ./src:/app
+      - ./.docker/vscode/settings.json:/home/coder/.vscode/User/settings.json:ro
+      - ./:/home/coder/project
     networks:
       - dotnetdemo-net
     ports:
@@ -100,3 +104,4 @@ services:
 
 volumes:
   dotnetdemo-mariadb:
+    name: dotnetdemo-mariadb
