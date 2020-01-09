@@ -6,6 +6,7 @@
 
 
   <ItemGroup>
+    <Watch Include="**\*.js" Exclude="node_modules\**\*;**\*.js.map;obj\**\*;bin\**\*" />
   </ItemGroup>
 
 </Project>

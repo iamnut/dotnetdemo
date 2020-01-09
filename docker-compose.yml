@@ -22,7 +22,7 @@ services:
       - TZ=Asia/Bangkok
       - ASPNETCORE_ENVIRONMENT=development
       - DOTNET_USE_POLLING_FILE_WATCHER=1
-    command: dotnet run
+    command: dotnet watch run
     volumes:
       - ./src:/app
     networks:
@@ -95,7 +95,8 @@ services:
       - TZ=Asia/Bangkok
       - PASSWORD=1234
     volumes:
-      - ./.docker/vscode/settings.json:/home/coder/.vscode/User/settings.json:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./.docker/vscode/settings.json:/home/coder/.vscode/User/settings.json
       - ./:/home/coder/project
     networks:
       - dotnetdemo-net
